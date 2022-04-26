@@ -45,3 +45,7 @@ h1 {
   /* 0 is the default (aka in the center) */
   transform: translateX(0);
 }
+
+.box h2 {
+    font-size: 45px;
+}
