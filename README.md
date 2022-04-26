@@ -25,7 +25,7 @@ Welcome to the # mini-project of the course!
 
 In this project users will be able to:
 
-- Build a responsive site that displays a functional progress bar.
+- Build a responsive site that displays an animated scroll function.
 
 ### Screenshot🌇
 
@@ -33,12 +33,12 @@ In this project users will be able to:
 
 ### Links👩🏾‍💻
 
-- Solution URL: (https://github.com/MaianneThornton/50in50_ProgressSteps)
-- Live Site URL: (https://frolicking-biscotti-f94d2f.netlify.app/)
+- Solution URL: (https://github.com/MaianneThornton/50in50_ScrollAnimation)
+- Live Site URL: (https://chic-gumption-179776.netlify.app/)
 
 ## My process💭
 
-This is a simple project that I started by marking out initial classes and id's in the html file to be later used for styling. Next I began styling the css by styling the line, circles, and buttons. I then added functionality by way of JavaScript to switch between classes when the user clicks on a button.
+This is a simple project that I started by marking out initial classes in the html file to be later used for styling. Next I began styling the css by styling the boxes and the classes to be later used for functionality. I then added functionality by way of JavaScript to switch between classes when the user scrolls down the page. This creates the animation where the boxes slide into view.
 
 ### Built with👷🏾‍♀️
 
@@ -49,9 +49,9 @@ This is a simple project that I started by marking out initial classes and id's 
 
 ### What I learned👩🏾‍🏫
 
-I learned the logic behind making a simple progress bar functional. I will be applying this to future projects where needed.
+I learned the logic behind making animated boxes slide into view. I will be applying this to future projects where needed.
 
-I also learned that when using the before or after selectors you MUST add content for the style to be visible.
+I also learned how to use "getBoundingClientRect" to create a DOMRect to accurately pinpoint the positioning of a rectangular section. (see [Useful resources](#useful-resources) for more information).
 
 ### Continued development🔮
 
@@ -64,46 +64,37 @@ I also plan on continuing to learn the best ways to phrase git commits, so that 
 ### I'm really proud of these code snippets✂️
 
 ```css
-.progress-container::before {
-  content: '';
-  background-color: var(--line-border-empty);
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 4px;
-  width: 100%;
-  z-index: -1;
+/* moves all the even boxes to the left side */
+.box:nth-of-type(even) {
+  transform: translateX(-400%);
 }
 ```
 
 ```js
-next.addEventListener('click', () => {
-  currentActive++;
+function checkBoxes() {
+  // trigger point to determine when the box should scroll into view by using the innerHeight of the box
+  const triggerBottom = window.innerHeight / 5 * 4
 
-  if (currentActive > circles.length) {
-    currentActive = circles.length;
-  }
-  update();
-});
-
-prev.addEventListener('click', () => {
-  currentActive--;
-
-  if (currentActive < 1) {
-    currentActive = 1;
-  }
-  update();
-});
+  boxes.forEach(box => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+    const boxTop = box.getBoundingClientRect().top
+    if (boxTop < triggerBottom) {
+      box.classList.add('show')
+    } else {
+      box.classList.remove('show')
+    }
+  })
+}
 ```
 
 ### Useful resources📖
 
-- [Resource](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/) - This is an amazing article which helped me write better commit messages. I'd recommend it to anyone still learning this concept.
+- [Resource 1](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) - This resource helped me to better understand the getBoundingClientRect element and how to use it. The diagram made the concept so easy to understand which properties to access.
+- [Resource 2](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/) - This is an amazing article which helped me write better commit messages. I'd recommend it to anyone still learning this concept.
 
 ## Author🔎
 
-- Website - [Portfolio Site](https://www.maiannethornton.com/Portfolio/index.html)
+- Website - [Portfolio Site](https://maiannethornton-portfolio.netlify.app/)
 - Frontend Mentor - [@MaianneThornton](https://www.frontendmentor.io/profile/MaianneThornton)
 - GitHub - [@MaianneThornton](GitHub.com/MaianneThornton)
 - Twitter - [@MaianneThornton](https://twitter.com/MaianneThornton)
