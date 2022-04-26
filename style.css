@@ -12,6 +12,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
+  /* hides horizontal scroll bar */
+  overflow-x: hidden;
 }
 
 h1 {
@@ -36,16 +38,15 @@ h1 {
 }
 
 /* moves all the even boxes to the left side */
-.box:nth-of-type(even){
+.box:nth-of-type(even) {
   transform: translateX(-400%);
-
 }
 
 .box.show {
-  /* 0 is the default (aka in the center) */
+  /* 0 is the default position (aka in this case the center) */
   transform: translateX(0);
 }
 
 .box h2 {
-    font-size: 45px;
+  font-size: 45px;
 }
